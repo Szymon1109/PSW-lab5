@@ -104,8 +104,8 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void changePassword(User user, String newPassword){
-        String query = "UPDATE uzytkownicy SET haslo=" + newPassword +
-                "WHERE id=" + user.getId() + ";";
+        String query = "UPDATE uzytkownicy SET haslo='" + newPassword +
+                "' WHERE id=" + user.getId() + ";";
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
         conn.closeConnect();

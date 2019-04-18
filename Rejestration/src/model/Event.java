@@ -6,6 +6,13 @@ public class Event {
     private String agenda;
     private String termin;
 
+    public Event(Integer id, String nazwa, String agenda, String termin){
+        this.id = id;
+        this.nazwa = nazwa;
+        this.agenda = agenda;
+        this.termin = termin;
+    }
+
     public Event(String nazwa, String agenda, String termin){
         this.nazwa = nazwa;
         this.agenda = agenda;

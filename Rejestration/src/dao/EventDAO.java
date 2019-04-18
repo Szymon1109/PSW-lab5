@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface EventDAO {
     List findAllEvents();
-    Optional findEventsForUser(User user);
+    List findEventsForUser(User user);
 
     void confirm(User user, Event event);
 
     void save(Event event);
-    void update(Event event);
+    void update(Event event, String column, String newValue);
     void delete(Event event);
 }
