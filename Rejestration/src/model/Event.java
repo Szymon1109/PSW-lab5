@@ -7,7 +7,6 @@ public class Event {
     private String termin;
 
     public Event(String nazwa, String agenda, String termin){
-
         this.nazwa = nazwa;
         this.agenda = agenda;
         this.termin = termin;

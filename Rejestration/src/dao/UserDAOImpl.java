@@ -6,7 +6,6 @@ import java.sql.*;
 
 public class UserDAOImpl implements UserDAO{
 
-    @Override
     public Boolean findUser(String query) {
         SQLConnection conn = new SQLConnection();
         ResultSet rs = conn.makeQuery(query);
