@@ -1,8 +1,10 @@
 package dao;
 
 import database.SQLConnection;
+import javafx.collections.FXCollections;
 import model.User;
 import java.sql.*;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO{
 
@@ -57,6 +59,36 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
+    public List<User> findAllUsers(){
+        List<User> data = FXCollections.observableArrayList();
+        String query = "SELECT * FROM uzytkownicy";
+        SQLConnection conn = new SQLConnection();
+        ResultSet rs = conn.makeQuery(query);
+
+        try{
+            while(rs.next()){
+                Integer id = rs.getInt("id");
+                String imie = rs.getString("imie");
+                String nazwisko = rs.getString("nazwisko");
+                String login = rs.getString("login");
+                String haslo = rs.getString("haslo");
+                String email = rs.getString("email");
+                String uprawnienia = rs.getString("uprawnienia");
+                String data_rejestracji = rs.getString("data_rejestracji");
+
+                User row = new User(id, imie, nazwisko, login, haslo,
+                        email, uprawnienia, data_rejestracji);
+                data.add(row);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally {
+            conn.closeConnect(rs);
+        }
+        return data;
+    }
+
+    @Override
     public void save(User user){
         String query = "INSERT INTO uzytkownicy(imie, nazwisko, login, haslo, " +
                 "email, uprawnienia, data_rejestracji) VALUES ('" +
@@ -65,6 +97,23 @@ public class UserDAOImpl implements UserDAO{
                 user.getEmail() + "', '" + user.getUprawnienia() + "', '" +
                 user.getData_rejestracji() + "');";
 
+        SQLConnection conn = new SQLConnection();
+        conn.makeQueryToDatabase(query);
+        conn.closeConnect();
+    }
+
+    @Override
+    public void changePassword(User user, String newPassword){
+        String query = "UPDATE uzytkownicy SET haslo=" + newPassword +
+                "WHERE id=" + user.getId() + ";";
+        SQLConnection conn = new SQLConnection();
+        conn.makeQueryToDatabase(query);
+        conn.closeConnect();
+    }
+
+    @Override
+    public void delete(User user){
+        String query = "DELETE FROM uzytkownicy WHERE id=" + user.getId() + ";";
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
         conn.closeConnect();

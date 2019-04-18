@@ -12,6 +12,19 @@ public class User {
     private String uprawnienia;
     private String data_rejestracji;
 
+    public User(Integer id, String imie, String nazwisko, String login, String haslo,
+                String email, String uprawnienia, String data_rejestracji){
+
+        this.id = id;
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.login = login;
+        this.haslo = haslo;
+        this.email = email;
+        this.uprawnienia = uprawnienia;
+        this.data_rejestracji = data_rejestracji;
+    }
+
     public User(String imie, String nazwisko, String login, String haslo,
                 String email, String uprawnienia, String data_rejestracji){
 
