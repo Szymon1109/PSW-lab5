@@ -4,7 +4,6 @@ import model.User;
 import java.util.List;
 
 public interface UserDAO {
-
     Boolean findOne(String login, String haslo);
     Boolean findOne(String login);
 
