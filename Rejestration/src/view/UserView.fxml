@@ -23,7 +23,7 @@
                   <Label layoutX="434.0" layoutY="87.0" text="Termin wydarzenia:" />
                   <ChoiceBox fx:id="typUczestnictwa" layoutX="280.0" layoutY="226.0" prefWidth="150.0" />
                   <ChoiceBox fx:id="wyzywienie" layoutX="280.0" layoutY="262.0" prefWidth="150.0" />
-                  <Button fx:id="zapisz" alignment="CENTER" contentDisplay="BOTTOM" layoutX="233.0" layoutY="312.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Zapisz" textAlignment="CENTER">
+                  <Button fx:id="zapisz" alignment="CENTER" contentDisplay="BOTTOM" layoutX="236.0" layoutY="312.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Zapisz" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -32,7 +32,7 @@
                   <Label layoutX="201.0" layoutY="266.0" text="Wyżywienie:" />
                   <Label fx:id="agenda" layoutX="36.0" layoutY="113.0" prefHeight="86.0" prefWidth="382.0" style="-fx-background-color: FFFF; -fx-border-color: AAAA;" />
                   <Label fx:id="termin" layoutX="434.0" layoutY="113.0" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: FFFF; -fx-border-color: AAAA;" />
-                  <Button fx:id="wyloguj" alignment="CENTER" contentDisplay="BOTTOM" layoutX="317.0" layoutY="312.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" text="Wyloguj" textAlignment="CENTER">
+                  <Button fx:id="wyloguj" alignment="CENTER" contentDisplay="BOTTOM" layoutX="314.0" layoutY="312.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" text="Wyloguj" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -44,7 +44,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="BOTTOM" layoutY="23.0" prefHeight="31.0" prefWidth="600.0" text="Wydarzenia, na które zostałeś zapisany:">
+                  <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="22.0" prefHeight="31.0" prefWidth="241.0" text="Wydarzenia, na które zostałeś zapisany:">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -57,6 +57,11 @@
                         <TreeTableColumn fx:id="terminTab" minWidth="0.0" prefWidth="91.19998779296873" text="Termin" />
                     </columns>
                   </TreeTableView>
+                  <Button fx:id="odswiez" alignment="CENTER" contentDisplay="BOTTOM" layoutX="492.0" layoutY="23.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="79.0" text="Odśwież" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children></AnchorPane>
       </content>
     </Tab>
