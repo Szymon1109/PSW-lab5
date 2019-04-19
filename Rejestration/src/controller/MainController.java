@@ -144,6 +144,7 @@ public class MainController {
 
         if(checkString(loginTxt) && checkString(hasloTxt)){
             if(checkAccess(loginTxt, hasloTxt)){
+                licznik = 0;
                 String uprawnienia = getUprawnienia(loginTxt);
 
                 if(uprawnienia.equals("admin")){
