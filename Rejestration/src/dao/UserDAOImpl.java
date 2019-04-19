@@ -1,10 +1,10 @@
 package dao;
 
 import database.SQLConnection;
-import javafx.collections.FXCollections;
-import model.User;
 import java.sql.*;
 import java.util.List;
+import javafx.collections.FXCollections;
+import model.User;
 
 public class UserDAOImpl implements UserDAO{
 

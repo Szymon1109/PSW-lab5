@@ -1,9 +1,8 @@
 package dao;
 
+import java.util.List;
 import model.Event;
 import model.User;
-import java.util.List;
-import java.util.Optional;
 
 public interface EventDAO {
     List findAllEvents();

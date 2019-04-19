@@ -1,7 +1,7 @@
 package dao;
 
-import model.User;
 import java.util.List;
+import model.User;
 
 public interface UserDAO {
     Boolean findOne(String login, String haslo);

@@ -1,13 +1,13 @@
 package dao;
 
+import model.Event;
+import model.User;
 import database.SQLConnection;
 import javafx.collections.FXCollections;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Event;
-import model.User;
 
 public class EventDAOImpl implements EventDAO {
 
