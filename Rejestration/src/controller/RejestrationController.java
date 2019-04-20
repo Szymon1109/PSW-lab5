@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class OtherController {
+public class RejestrationController {
 
     @FXML
     private Button close;
