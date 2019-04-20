@@ -1,21 +1,307 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OtherController">
-   <children>
-      <Button fx:id="close" layoutX="251.0" layoutY="253.0" mnemonicParsing="false" onAction="#close" text="Zamknij">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Label layoutX="207.0" layoutY="142.0" text="Witaj administratorze!">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="Obsługa użytkowników">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TabPane prefHeight="371.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Wszyscy">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TreeTableView layoutX="31.0" layoutY="59.0" prefHeight="251.0" prefWidth="538.0">
+                                       <columns>
+                                          <TreeTableColumn prefWidth="35.0" text="ID" />
+                                          <TreeTableColumn prefWidth="70.0" text="Imię" />
+                                          <TreeTableColumn prefWidth="90.0" text="Nazwisko" />
+                                          <TreeTableColumn minWidth="0.0" prefWidth="75.0" text="Login" />
+                                          <TreeTableColumn prefWidth="85.0" text="Hasło" />
+                                          <TreeTableColumn prefWidth="116.79998779296875" text="Email" />
+                                          <TreeTableColumn prefWidth="64.79998779296875" text="Data" />
+                                       </columns>
+                                    </TreeTableView>
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Wyloguj" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Dodawanie">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="565.0">
+                                 <children>
+                                    <AnchorPane layoutY="-1.0" minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="600.0">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="272.0" layoutY="274.0" mnemonicParsing="false" text="Dodaj">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <TextField layoutX="252.0" layoutY="75.0" promptText="first name" />
+                                          <TextField layoutX="252.0" layoutY="111.0" promptText="surname" />
+                                          <TextField layoutX="252.0" layoutY="149.0" promptText="username" />
+                                          <PasswordField layoutX="252.0" layoutY="184.0" promptText="password" />
+                                          <TextField layoutX="252.0" layoutY="220.0" promptText="e-mail" />
+                                          <Label layoutX="208.0" layoutY="79.0" text="Imię:" />
+                                          <Label layoutX="183.0" layoutY="114.0" text="Nazwisko:" />
+                                          <Label layoutX="205.0" layoutY="153.0" text="Login:" />
+                                          <Label layoutX="205.0" layoutY="187.0" text="Hasło:" />
+                                          <Label layoutX="203.0" layoutY="223.0" text="E-mail:" />
+                                          <Label layoutX="194.0" layoutY="30.0" text="Podaj dane nowego użytkownika...">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Usuwanie">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="183.0" layoutY="74.0" text="Wybierz ID użytkownika, aby usunąć...">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="225.0" layoutY="128.0" prefWidth="150.0" />
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="258.0" layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="Usuń">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Zmiana hasła">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="164.0" layoutY="50.0" text="Wybierz ID użytkownika, aby zmienić hasło...">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="225.0" layoutY="88.0" prefWidth="150.0" />
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="258.0" layoutY="253.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="Zmień">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="167.0" layoutY="154.0" text="Podaj stare hasło:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="166.0" layoutY="191.0" text="Podaj nowe hasło:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <PasswordField layoutX="289.0" layoutY="151.0" />
+                                    <PasswordField layoutX="289.0" layoutY="188.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Obsługa wydarzeń">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TabPane prefHeight="369.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Wszystkie">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="196.0" prefWidth="225.0">
+                                 <children>
+                                    <TreeTableView layoutX="31.0" layoutY="60.0" prefHeight="251.0" prefWidth="538.0">
+                                       <columns>
+                                          <TreeTableColumn prefWidth="49.5999755859375" text="ID" />
+                                          <TreeTableColumn prefWidth="156.79998779296875" text="Nazwa" />
+                                          <TreeTableColumn prefWidth="244.0" text="Agenda" />
+                                          <TreeTableColumn minWidth="0.0" prefWidth="91.19998779296873" text="Termin" />
+                                       </columns>
+                                    </TreeTableView>
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Wyloguj" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Dodawanie">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="600.0">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="257.0" layoutY="271.0" mnemonicParsing="false" text="Dodaj">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <TextField layoutX="94.0" layoutY="98.0" />
+                                          <Label layoutX="46.0" layoutY="102.0" text="Nazwa:" />
+                                          <Label layoutX="278.0" layoutY="69.0" text="Agenda:" />
+                                          <Label layoutX="45.0" layoutY="139.0" text="Termin:" />
+                                          <Label layoutX="212.0" layoutY="30.0" text="Podaj dane nowego wydarzenia...">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea layoutX="280.0" layoutY="95.0" prefHeight="146.0" prefWidth="276.0" />
+                                          <DatePicker editable="false" layoutX="94.0" layoutY="135.0" prefHeight="26.0" prefWidth="148.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Usuwanie">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="187.0" layoutY="75.0" text="Wybierz ID wydarzenia, aby usunąć...">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="225.0" layoutY="132.0" prefWidth="150.0" />
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="258.0" layoutY="222.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="Usuń">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Modyfikacja">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="600.0">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="255.0" layoutY="276.0" mnemonicParsing="false" text="Zmień">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <TextField layoutX="93.0" layoutY="139.0" />
+                                          <Label layoutX="46.0" layoutY="143.0" text="Nazwa:" />
+                                          <Label layoutX="278.0" layoutY="115.0" text="Agenda:" />
+                                          <Label layoutX="45.0" layoutY="177.0" text="Termin:" />
+                                          <TextArea layoutX="278.0" layoutY="139.0" prefHeight="109.0" prefWidth="276.0" />
+                                          <DatePicker editable="false" layoutX="93.0" layoutY="173.0" prefHeight="26.0" prefWidth="148.0" />
+                                          <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="164.0" layoutY="30.0" text="Wybierz ID wydarzenia, aby zmodyfikować...">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox layoutX="210.0" layoutY="67.0" prefWidth="150.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Obsługa zapisów">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TabPane prefHeight="370.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Zatwierdzone">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="272.0" prefWidth="429.0">
+                                 <children>
+                                    <TreeTableView layoutX="150.0" layoutY="44.0" prefHeight="251.0" prefWidth="300.0">
+                                       <columns>
+                                          <TreeTableColumn prefWidth="70.0" text="ID" />
+                                          <TreeTableColumn prefWidth="115.0" text="ID użytkownika" />
+                                          <TreeTableColumn prefWidth="115.0" text="ID wydarzenia" />
+                                       </columns>
+                                    </TreeTableView>
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="474.0" layoutY="44.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Niezatwierdzone">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TreeTableView layoutX="150.0" layoutY="44.0" prefHeight="251.0" prefWidth="300.0">
+                                       <columns>
+                                          <TreeTableColumn prefWidth="70.0" text="ID" />
+                                          <TreeTableColumn prefWidth="115.0" text="ID użytkownika" />
+                                          <TreeTableColumn prefWidth="115.0" text="ID wydarzenia" />
+                                       </columns>
+                                    </TreeTableView>
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="474.0" layoutY="44.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Obsługa">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="216.0" layoutY="219.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="Potwierdź">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="310.0" layoutY="219.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="Odrzuć">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="148.0" layoutY="73.0" text="Wybierz ID zapisu, aby potwierdzić lub odrzucić...">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="224.0" layoutY="123.0" prefWidth="150.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
