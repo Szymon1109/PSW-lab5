@@ -7,10 +7,10 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -26,19 +26,19 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="600.0">
                                  <children>
-                                    <TreeTableView layoutX="31.0" layoutY="62.0" prefHeight="297.0" prefWidth="538.0">
-                                       <columns>
-                                          <TreeTableColumn fx:id="obslugaIdTab" prefWidth="35.0" text="ID" />
-                                          <TreeTableColumn fx:id="obslugaImieTab" prefWidth="70.0" text="Imię" />
-                                          <TreeTableColumn fx:id="obslugaNazwiskoTab" prefWidth="90.0" text="Nazwisko" />
-                                          <TreeTableColumn fx:id="obslugaLoginTab" minWidth="0.0" prefWidth="75.0" text="Login" />
-                                          <TreeTableColumn fx:id="obslugaHasloTab" prefWidth="85.0" text="Hasło" />
-                                          <TreeTableColumn fx:id="obslugaEmailTab" prefWidth="116.79998779296875" text="Email" />
-                                          <TreeTableColumn fx:id="obslugaDataTab" prefWidth="64.79998779296875" text="Data" />
-                                       </columns>
-                                    </TreeTableView>
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Wyloguj" />
+                                    <TableView fx:id="uzytkTable" layoutX="31.0" layoutY="61.0" prefHeight="297.0" prefWidth="538.0">
+                                      <columns>
+                                        <TableColumn fx:id="uzytkIdTable" prefWidth="35.20001220703125" text="ID" />
+                                        <TableColumn fx:id="uzytkImieTable" prefWidth="69.5999755859375" text="Imię" />
+                                          <TableColumn fx:id="uzytkNazwiskoTable" prefWidth="91.199951171875" text="Nazwisko" />
+                                          <TableColumn fx:id="uzytkLoginTable" prefWidth="72.79998779296875" text="Login" />
+                                          <TableColumn fx:id="uzytkHasloTable" prefWidth="86.39996337890625" text="Hasło" />
+                                          <TableColumn fx:id="uzytkEmailTable" prefWidth="116.79998779296875" text="Email" />
+                                          <TableColumn fx:id="uzytkDataTable" prefWidth="64.00002441406252" text="Data" />
+                                      </columns>
+                                    </TableView>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -140,16 +140,16 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="600.0">
                                  <children>
-                                    <TreeTableView layoutX="31.0" layoutY="60.0" prefHeight="298.0" prefWidth="538.0">
-                                       <columns>
-                                          <TreeTableColumn fx:id="wydIdTab" prefWidth="49.5999755859375" text="ID" />
-                                          <TreeTableColumn fx:id="wydNazwaTab" prefWidth="156.79998779296875" text="Nazwa" />
-                                          <TreeTableColumn fx:id="wydAgendaTab" prefWidth="244.0" text="Agenda" />
-                                          <TreeTableColumn fx:id="wydTerminTab" minWidth="0.0" prefWidth="91.19998779296873" text="Termin" />
-                                       </columns>
-                                    </TreeTableView>
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Wyloguj" />
+                                    <TableView fx:id="wydTable" layoutX="31.0" layoutY="62.0" prefHeight="298.0" prefWidth="538.0">
+                                      <columns>
+                                        <TableColumn fx:id="wydIdTable" prefWidth="35.20001220703125" text="ID" />
+                                        <TableColumn fx:id="wydNazwaTable" prefWidth="163.20001220703125" text="Nazwa" />
+                                          <TableColumn fx:id="wydAgendaTable" prefWidth="270.4000244140625" text="Agenda" />
+                                          <TableColumn fx:id="wydTerminTable" minWidth="0.0" prefWidth="67.20001220703125" text="Termin" />
+                                      </columns>
+                                    </TableView>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -165,7 +165,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <TextField layoutX="94.0" layoutY="123.0" />
+                                          <TextField fx:id="wydNazwaDodaj" layoutX="94.0" layoutY="123.0" />
                                           <Label layoutX="46.0" layoutY="127.0" text="Nazwa:" />
                                           <Label layoutX="278.0" layoutY="93.0" text="Agenda:" />
                                           <Label layoutX="45.0" layoutY="163.0" text="Termin:" />
@@ -217,7 +217,7 @@
                                           <Label layoutX="278.0" layoutY="137.0" text="Agenda:" />
                                           <Label layoutX="45.0" layoutY="204.0" text="Termin:" />
                                           <TextArea fx:id="wydAgendaZmien" layoutX="278.0" layoutY="165.0" prefHeight="109.0" prefWidth="276.0" />
-                                          <DatePicker fx:id="wydTerminZmien" editable="false" layoutX="97.0" layoutY="200.0" prefHeight="26.0" prefWidth="148.0" />
+                                          <DatePicker fx:id="wydTerminZmien" layoutX="97.0" layoutY="200.0" prefHeight="26.0" prefWidth="148.0" />
                                           <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="164.0" layoutY="40.0" text="Wybierz ID wydarzenia, aby zmodyfikować...">
                                              <font>
                                                 <Font size="14.0" />
@@ -245,14 +245,14 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="366.0" prefWidth="600.0">
                                  <children>
-                                    <TreeTableView layoutX="150.0" layoutY="44.0" prefHeight="298.0" prefWidth="300.0">
-                                       <columns>
-                                          <TreeTableColumn fx:id="zatwIdTab" prefWidth="70.0" text="ID" />
-                                          <TreeTableColumn fx:id="zatwIdUzytkTab" prefWidth="115.0" text="ID użytkownika" />
-                                          <TreeTableColumn fx:id="zatwIdWydarzTab" prefWidth="115.0" text="ID wydarzenia" />
-                                       </columns>
-                                    </TreeTableView>
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="474.0" layoutY="44.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
+                                    <TableView fx:id="zatwTable" layoutX="150.0" layoutY="44.0" prefHeight="298.0" prefWidth="299.0">
+                                      <columns>
+                                        <TableColumn fx:id="zatwIdTable" prefWidth="62.4000244140625" text="ID" />
+                                        <TableColumn fx:id="zatwIdUTable" prefWidth="119.20001220703125" text="ID użytkownika" />
+                                          <TableColumn fx:id="zatwIdWTable" prefWidth="115.19999999999999" text="ID wydarzenia" />
+                                      </columns>
+                                    </TableView>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -261,14 +261,14 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TreeTableView layoutX="150.0" layoutY="44.0" prefHeight="297.0" prefWidth="300.0">
-                                       <columns>
-                                          <TreeTableColumn fx:id="niezatwIdTab" prefWidth="70.0" text="ID" />
-                                          <TreeTableColumn fx:id="niezatwIdUzytkTab" prefWidth="115.0" text="ID użytkownika" />
-                                          <TreeTableColumn fx:id="niezatwIdWydarzTab" prefWidth="115.0" text="ID wydarzenia" />
-                                       </columns>
-                                    </TreeTableView>
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="474.0" layoutY="44.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
+                                    <TableView fx:id="niezatwTable" layoutX="150.0" layoutY="45.0" prefHeight="298.0" prefWidth="299.0">
+                                       <columns>
+                                          <TableColumn fx:id="niezatwIdTable" prefWidth="62.4000244140625" text="ID" />
+                                          <TableColumn fx:id="niezatwIdUTable" prefWidth="119.20001220703125" text="ID użytkownika" />
+                                          <TableColumn fx:id="niezatwIdWTable" prefWidth="115.19999999999999" text="ID wydarzenia" />
+                                       </columns>
+                                    </TableView>
                                  </children>
                               </AnchorPane>
                         </content>
