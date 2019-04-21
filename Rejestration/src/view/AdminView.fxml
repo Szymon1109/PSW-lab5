@@ -28,13 +28,13 @@
                                  <children>
                                     <TreeTableView layoutX="31.0" layoutY="62.0" prefHeight="297.0" prefWidth="538.0">
                                        <columns>
-                                          <TreeTableColumn prefWidth="35.0" text="ID" />
-                                          <TreeTableColumn prefWidth="70.0" text="Imię" />
-                                          <TreeTableColumn prefWidth="90.0" text="Nazwisko" />
-                                          <TreeTableColumn minWidth="0.0" prefWidth="75.0" text="Login" />
-                                          <TreeTableColumn prefWidth="85.0" text="Hasło" />
-                                          <TreeTableColumn prefWidth="116.79998779296875" text="Email" />
-                                          <TreeTableColumn prefWidth="64.79998779296875" text="Data" />
+                                          <TreeTableColumn fx:id="obslugaIdTab" prefWidth="35.0" text="ID" />
+                                          <TreeTableColumn fx:id="obslugaImieTab" prefWidth="70.0" text="Imię" />
+                                          <TreeTableColumn fx:id="obslugaNazwiskoTab" prefWidth="90.0" text="Nazwisko" />
+                                          <TreeTableColumn fx:id="obslugaLoginTab" minWidth="0.0" prefWidth="75.0" text="Login" />
+                                          <TreeTableColumn fx:id="obslugaHasloTab" prefWidth="85.0" text="Hasło" />
+                                          <TreeTableColumn fx:id="obslugaEmailTab" prefWidth="116.79998779296875" text="Email" />
+                                          <TreeTableColumn fx:id="obslugaDataTab" prefWidth="64.79998779296875" text="Data" />
                                        </columns>
                                     </TreeTableView>
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
@@ -54,11 +54,11 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <TextField layoutX="252.0" layoutY="95.0" promptText="first name" />
-                                          <TextField layoutX="252.0" layoutY="133.0" promptText="surname" />
-                                          <TextField layoutX="252.0" layoutY="172.0" promptText="username" />
-                                          <PasswordField layoutX="252.0" layoutY="211.0" promptText="password" />
-                                          <TextField layoutX="252.0" layoutY="250.0" promptText="e-mail" />
+                                          <TextField fx:id="obslugaImie" layoutX="252.0" layoutY="95.0" promptText="first name" />
+                                          <TextField fx:id="obslugaNazwisko" layoutX="252.0" layoutY="133.0" promptText="surname" />
+                                          <TextField fx:id="obslugaLogin" layoutX="252.0" layoutY="172.0" promptText="username" />
+                                          <PasswordField fx:id="obslugaHaslo" layoutX="252.0" layoutY="211.0" promptText="password" />
+                                          <TextField fx:id="obslugaEmail" layoutX="252.0" layoutY="250.0" promptText="e-mail" />
                                           <Label layoutX="208.0" layoutY="99.0" text="Imię:" />
                                           <Label layoutX="182.0" layoutY="137.0" text="Nazwisko:" />
                                           <Label layoutX="204.0" layoutY="176.0" text="Login:" />
@@ -84,7 +84,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="224.0" layoutY="158.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="obslugaIdUsun" layoutX="224.0" layoutY="158.0" prefWidth="150.0" />
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="258.0" layoutY="258.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="Usuń">
                                        <font>
                                           <Font size="14.0" />
@@ -103,7 +103,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="225.0" layoutY="109.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="obslugaIdZmien" layoutX="225.0" layoutY="109.0" prefWidth="150.0" />
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="258.0" layoutY="297.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="Zmień">
                                        <font>
                                           <Font size="14.0" />
@@ -119,8 +119,8 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <PasswordField layoutX="289.0" layoutY="176.0" />
-                                    <PasswordField layoutX="289.0" layoutY="215.0" />
+                                    <PasswordField fx:id="obslugaStareHaslo" layoutX="289.0" layoutY="176.0" />
+                                    <PasswordField fx:id="obslugaNoweHaslo" layoutX="289.0" layoutY="215.0" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -142,10 +142,10 @@
                                  <children>
                                     <TreeTableView layoutX="31.0" layoutY="60.0" prefHeight="298.0" prefWidth="538.0">
                                        <columns>
-                                          <TreeTableColumn prefWidth="49.5999755859375" text="ID" />
-                                          <TreeTableColumn prefWidth="156.79998779296875" text="Nazwa" />
-                                          <TreeTableColumn prefWidth="244.0" text="Agenda" />
-                                          <TreeTableColumn minWidth="0.0" prefWidth="91.19998779296873" text="Termin" />
+                                          <TreeTableColumn fx:id="wydIdTab" prefWidth="49.5999755859375" text="ID" />
+                                          <TreeTableColumn fx:id="wydNazwaTab" prefWidth="156.79998779296875" text="Nazwa" />
+                                          <TreeTableColumn fx:id="wydAgendaTab" prefWidth="244.0" text="Agenda" />
+                                          <TreeTableColumn fx:id="wydTerminTab" minWidth="0.0" prefWidth="91.19998779296873" text="Termin" />
                                        </columns>
                                     </TreeTableView>
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
@@ -154,7 +154,7 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="Dodawanie">
+                      <Tab fx:id="wydNazwaDodaj" text="Dodawanie">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -174,8 +174,8 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextArea layoutX="280.0" layoutY="122.0" prefHeight="146.0" prefWidth="276.0" />
-                                          <DatePicker editable="false" layoutX="94.0" layoutY="159.0" prefHeight="26.0" prefWidth="148.0" />
+                                          <TextArea fx:id="wydAgendaDodaj" layoutX="280.0" layoutY="122.0" prefHeight="146.0" prefWidth="276.0" />
+                                          <DatePicker fx:id="wydTerminDodaj" editable="false" layoutX="94.0" layoutY="159.0" prefHeight="26.0" prefWidth="148.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -191,7 +191,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="225.0" layoutY="157.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="wydIdUsun" layoutX="225.0" layoutY="157.0" prefWidth="150.0" />
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="258.0" layoutY="257.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="Usuń">
                                        <font>
                                           <Font size="14.0" />
@@ -212,18 +212,18 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <TextField layoutX="97.0" layoutY="164.0" />
+                                          <TextField fx:id="wydNazwaZmien" layoutX="97.0" layoutY="164.0" />
                                           <Label layoutX="46.0" layoutY="168.0" text="Nazwa:" />
                                           <Label layoutX="278.0" layoutY="137.0" text="Agenda:" />
                                           <Label layoutX="45.0" layoutY="204.0" text="Termin:" />
-                                          <TextArea layoutX="278.0" layoutY="165.0" prefHeight="109.0" prefWidth="276.0" />
-                                          <DatePicker editable="false" layoutX="97.0" layoutY="200.0" prefHeight="26.0" prefWidth="148.0" />
+                                          <TextArea fx:id="wydAgendaZmien" layoutX="278.0" layoutY="165.0" prefHeight="109.0" prefWidth="276.0" />
+                                          <DatePicker fx:id="wydTerminZmien" editable="false" layoutX="97.0" layoutY="200.0" prefHeight="26.0" prefWidth="148.0" />
                                           <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="164.0" layoutY="40.0" text="Wybierz ID wydarzenia, aby zmodyfikować...">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox layoutX="209.0" layoutY="81.0" prefWidth="150.0" />
+                                          <ComboBox fx:id="wydIdZmien" layoutX="209.0" layoutY="81.0" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -247,9 +247,9 @@
                                  <children>
                                     <TreeTableView layoutX="150.0" layoutY="44.0" prefHeight="298.0" prefWidth="300.0">
                                        <columns>
-                                          <TreeTableColumn prefWidth="70.0" text="ID" />
-                                          <TreeTableColumn prefWidth="115.0" text="ID użytkownika" />
-                                          <TreeTableColumn prefWidth="115.0" text="ID wydarzenia" />
+                                          <TreeTableColumn fx:id="zatwIdTab" prefWidth="70.0" text="ID" />
+                                          <TreeTableColumn fx:id="zatwIdUzytkTab" prefWidth="115.0" text="ID użytkownika" />
+                                          <TreeTableColumn fx:id="zatwIdWydarzTab" prefWidth="115.0" text="ID wydarzenia" />
                                        </columns>
                                     </TreeTableView>
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="474.0" layoutY="44.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
@@ -263,9 +263,9 @@
                                  <children>
                                     <TreeTableView layoutX="150.0" layoutY="44.0" prefHeight="297.0" prefWidth="300.0">
                                        <columns>
-                                          <TreeTableColumn prefWidth="70.0" text="ID" />
-                                          <TreeTableColumn prefWidth="115.0" text="ID użytkownika" />
-                                          <TreeTableColumn prefWidth="115.0" text="ID wydarzenia" />
+                                          <TreeTableColumn fx:id="niezatwIdTab" prefWidth="70.0" text="ID" />
+                                          <TreeTableColumn fx:id="niezatwIdUzytkTab" prefWidth="115.0" text="ID użytkownika" />
+                                          <TreeTableColumn fx:id="niezatwIdWydarzTab" prefWidth="115.0" text="ID wydarzenia" />
                                        </columns>
                                     </TreeTableView>
                                     <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="474.0" layoutY="44.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
@@ -292,7 +292,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="224.0" layoutY="152.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="idZapis" layoutX="224.0" layoutY="152.0" prefWidth="150.0" />
                                  </children>
                               </AnchorPane>
                           </content>
