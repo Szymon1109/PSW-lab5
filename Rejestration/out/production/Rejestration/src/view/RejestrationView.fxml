@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RejestrationController">
+<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RejestrationController">
    <children>
-      <Button fx:id="close" layoutX="257.0" layoutY="271.0" mnemonicParsing="false" onAction="#close" text="Zamknij">
+      <Button fx:id="close" layoutX="256.0" layoutY="297.0" mnemonicParsing="false" onAction="#close" text="Zamknij">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="61.0" layoutY="96.0" prefHeight="119.0" prefWidth="479.0" text="Dodano nowego użytkownika!                                            Na podany adres e-mail wygenerowana została wiadomość. Aby zalogować, wpisz swoje dane w panelu użytkownika..." wrapText="true">
+      <Label layoutX="60.0" layoutY="122.0" prefHeight="119.0" prefWidth="479.0" text="Dodano nowego użytkownika!                                            Na podany adres e-mail wygenerowana została wiadomość. Aby zalogować, wpisz swoje dane w panelu użytkownika..." wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
