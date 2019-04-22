@@ -1,7 +1,6 @@
 package dao;
 
 import model.Event;
-import model.User;
 import database.SQLConnection;
 import javafx.collections.FXCollections;
 import java.sql.ResultSet;
@@ -37,11 +36,23 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public List<Event> findEventsForUser(User user){
+    public List<Event> findConfirmedEventsForUser(Integer id){
+        String query = "SELECT DISTINCT id_wydarzenia FROM zapisy WHERE id_uzytkownika=" + id + " AND " + "zgoda='tak'";
+
+        return getData(query);
+    }
+
+    @Override
+    public List<Event> findNotConfirmedEventsForUser(Integer id){
+        String query = "SELECT DISTINCT id_wydarzenia FROM zapisy WHERE id_uzytkownika=" + id + " AND " + "zgoda IS NULL;";
+
+        return getData(query);
+    }
+
+    public List<Event> getData(String query){
         List<Integer> ids = new ArrayList<>();
-        String query1 = "SELECT id_wydarzenia FROM potwierdzenia WHERE id=" + user.getId() + ";";
         SQLConnection conn1 = new SQLConnection();
-        ResultSet rs1 = conn1.makeQuery(query1);
+        ResultSet rs1 = conn1.makeQuery(query);
 
         try{
             while(rs1.next()){
@@ -55,8 +66,8 @@ public class EventDAOImpl implements EventDAO {
         }
 
         List<Event> data = FXCollections.observableArrayList();
-        for(Integer id : ids){
-            String query2 = "SELECT * FROM wydarzenia WHERE id=" + id + ";";
+        for(Integer Id : ids){
+            String query2 = "SELECT * FROM wydarzenia WHERE id=" + Id + ";";
             SQLConnection conn2 = new SQLConnection();
             ResultSet rs2 = conn2.makeQuery(query2);
 
@@ -99,16 +110,6 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public void confirm(User user, Event event){
-        String query = "INSERT INTO potwierdzenia(id_uzytkownika, id_wydarzenia) VALUES (" +
-                user.getId() + ", " + event.getId() + ";";
-
-        SQLConnection conn = new SQLConnection();
-        conn.makeQueryToDatabase(query);
-        conn.closeConnect();
-    }
-
-    @Override
     public void save(Event event){
         String query = "INSERT INTO wydarzenia(nazwa, agenda, termin) VALUES ('" +
                 event.getNazwa() + "', '" + event.getAgenda() + "', '" + event.getTermin() + "');";
@@ -119,9 +120,12 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public void update(Integer id, String column, String newValue){
-        String query = "UPDATE wydarzenia SET " + column + "='" +
-                newValue + "' WHERE id=" + id + ";";
+    public void update(Event event){
+        Integer id = event.getId();
+
+        String query = "UPDATE wydarzenia SET nazwa='" + event.getNazwa() + "' AND " +
+                "agenda='" + event.getAgenda() + "' AND termin='" + event.getTermin() + "'" +
+                "WHERE id=" + event.getId() + ";";
 
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);

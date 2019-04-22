@@ -2,16 +2,15 @@ package dao;
 
 import java.util.List;
 import model.Event;
-import model.User;
 
 public interface EventDAO {
     List findAllEvents();
-    List findEventsForUser(User user);
+    List findConfirmedEventsForUser(Integer id);
+    List findNotConfirmedEventsForUser(Integer id);
+
     Boolean findOne(String nazwa);
 
-    void confirm(User user, Event event);
-
     void save(Event event);
-    void update(Integer id, String column, String newValue);
+    void update(Event event);
     void delete(String nazwa);
 }

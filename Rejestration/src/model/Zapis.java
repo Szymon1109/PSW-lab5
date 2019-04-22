@@ -8,13 +8,12 @@ public class Zapis {
     private String wyzywienie;
     private String zgoda;
 
-    public Zapis(Integer id, Integer idUzytkownika, Integer idWydarzenia, String typUczestnictwa, String wyzywienie, String zgoda) {
+    public Zapis(Integer id, Integer idUzytkownika, Integer idWydarzenia, String typUczestnictwa, String wyzywienie) {
         this.id = id;
         this.idUzytkownika = idUzytkownika;
         this.idWydarzenia = idWydarzenia;
         this.typUczestnictwa = typUczestnictwa;
         this.wyzywienie = wyzywienie;
-        this.zgoda = zgoda;
     }
 
     public Zapis(Integer idUzytkownika, Integer idWydarzenia, String typUczestnictwa, String wyzywienie, String zgoda) {

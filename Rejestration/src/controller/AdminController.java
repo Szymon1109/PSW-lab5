@@ -543,7 +543,7 @@ public class AdminController implements Initializable {
             if (checkNazwa(nazwaTxt)) {
                 Event event = new Event(nazwaTxt, agendaTxt, terminTxt);
                 EventDAO eventDAO = new EventDAOImpl();
-                eventDAO.save(event);
+                eventDAO.update(event);
 
                 uwaga("Zmieniono wybrane wydarzenie!");
                 clearWydTextField();
