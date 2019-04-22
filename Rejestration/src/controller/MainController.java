@@ -47,20 +47,6 @@ public class MainController {
 
     public int licznik = 0;
 
-    private void openView(String viewPath) {
-        Parent parent;
-        try {
-            parent = FXMLLoader.load(getClass().getClassLoader().getResource(viewPath));
-            Stage stage = new Stage();
-            stage.setTitle("Success!");
-            stage.setScene(new Scene(parent, 600, 450));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void uwaga(String string){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Uwaga!");
@@ -148,10 +134,10 @@ public class MainController {
                 String uprawnienia = getUprawnienia(loginTxt);
 
                 if(uprawnienia.equals("admin")){
-                    openView("view/AdminView.fxml");
+                    openAdminView("view/AdminView.fxml");
                 }
                 else if(uprawnienia.equals("user")){
-                    openView("view/UserView.fxml");
+                    openUserView("view/UserView.fxml");
                 }
 
                 clearLTextField();
@@ -166,6 +152,34 @@ public class MainController {
         }
         else{
             uwaga("Dane muszą składać się z conajmniej 3 znaków!");
+        }
+    }
+
+    private void openUserView(String viewPath) {
+        Parent parent;
+        try {
+            parent = FXMLLoader.load(getClass().getClassLoader().getResource(viewPath));
+            Stage stage = new Stage();
+            stage.setTitle("Panel użytkownika: " + username.getText());
+            stage.setScene(new Scene(parent, 600, 450));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openAdminView(String viewPath) {
+        Parent parent;
+        try {
+            parent = FXMLLoader.load(getClass().getClassLoader().getResource(viewPath));
+            Stage stage = new Stage();
+            stage.setTitle("Panel administratora: " + username.getText());
+            stage.setScene(new Scene(parent, 600, 450));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -202,6 +216,20 @@ public class MainController {
     public String getDate(){
         Date date = new Date(System.currentTimeMillis());
         return date.toString();
+    }
+
+    private void openView(String viewPath) {
+        Parent parent;
+        try {
+            parent = FXMLLoader.load(getClass().getClassLoader().getResource(viewPath));
+            Stage stage = new Stage();
+            stage.setTitle("Udana rejestracja!");
+            stage.setScene(new Scene(parent, 600, 450));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

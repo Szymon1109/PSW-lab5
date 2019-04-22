@@ -1,9 +1,6 @@
 package controller;
 
-import dao.EventDAO;
-import dao.EventDAOImpl;
-import dao.ZapisDAO;
-import dao.ZapisDAOImpl;
+import dao.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Event;
+import model.User;
 import model.Zapis;
 import java.net.URL;
 import java.util.List;
@@ -21,9 +19,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserController implements Initializable {
-
-    //TODO:
-    private static final Integer id_uzytkownika_CONST = 2;
 
     @FXML
     private ComboBox<String> wydarzenia;
@@ -73,8 +68,37 @@ public class UserController implements Initializable {
     @FXML
     private TableColumn terminNiezatw;
 
+    private Integer idUzytkownika;
+
+    public String getLoginUzytkownika(){
+        Stage stage =(Stage)wyloguj.getScene().getWindow();
+        String title = stage.getTitle();
+        String login = title.substring(18);
+
+        return login;
+    }
+
+    public Integer getIdUzytkownika(String login){
+        Integer id = null;
+
+        List<User> data = FXCollections.observableArrayList();
+        UserDAO userDAO = new UserDAOImpl();
+        data = userDAO.findAllUsers();
+
+        for(User user : data){
+            if(user.getLogin().equals(login)){
+                id = user.getId();
+                break;
+            }
+        }
+        return id;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        String login = getLoginUzytkownika();
+        idUzytkownika = getIdUzytkownika(login);
+
         setItemsInWydarzenia();
         setItemsInTypUczestnictwa();
         setItemsInWyzywienie();
@@ -124,7 +148,7 @@ public class UserController implements Initializable {
 
     public void setItemsInZatwWyd(){
         EventDAO event = new EventDAOImpl();
-        List<Event> data = event.findConfirmedEventsForUser(id_uzytkownika_CONST);
+        List<Event> data = event.findConfirmedEventsForUser(idUzytkownika);
         ObservableList<Event> list = FXCollections.observableArrayList(data);
 
         idZatw.setCellValueFactory(
@@ -144,7 +168,7 @@ public class UserController implements Initializable {
 
     public void setItemsInNiezatwWyd(){
         EventDAO event = new EventDAOImpl();
-        List<Event> data = event.findNotConfirmedEventsForUser(id_uzytkownika_CONST);
+        List<Event> data = event.findNotConfirmedEventsForUser(idUzytkownika);
         ObservableList<Event> list = FXCollections.observableArrayList(data);
 
         idNiezatw.setCellValueFactory(
@@ -220,7 +244,7 @@ public class UserController implements Initializable {
         String nazwaTxt = wydarzenia.getValue();
         Integer idWyd = getId(nazwaTxt);
 
-        Zapis zapis = new Zapis(id_uzytkownika_CONST, idWyd, typUczestnictwaTxt, wyzywienieTxt);
+        Zapis zapis = new Zapis(idUzytkownika, idWyd, typUczestnictwaTxt, wyzywienieTxt);
 
         ZapisDAO zapisDAO = new ZapisDAOImpl();
         zapisDAO.save(zapis);

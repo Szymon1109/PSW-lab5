@@ -245,14 +245,14 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="366.0" prefWidth="600.0">
                                  <children>
-                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="453.0" layoutY="17.0" mnemonicParsing="false" onAction="#zapisOdswiez" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
-                                    <TableView fx:id="zatwTable" layoutX="79.0" layoutY="63.0" prefHeight="298.0" prefWidth="442.0">
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="462.0" layoutY="16.0" mnemonicParsing="false" onAction="#zapisOdswiez" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
+                                    <TableView fx:id="zatwTable" layoutX="70.0" layoutY="62.0" prefHeight="287.0" prefWidth="460.0">
                                       <columns>
                                         <TableColumn fx:id="zatwIdTable" prefWidth="36.79998779296875" text="ID" />
                                         <TableColumn fx:id="zatwIdUTable" prefWidth="105.60003662109375" text="ID użytkownika" />
                                           <TableColumn fx:id="zatwIdWTable" prefWidth="98.4000244140625" text="ID wydarzenia" />
                                           <TableColumn fx:id="zatwTypUczestnictwaTable" prefWidth="111.20001220703125" text="Typ uczestnictwa" />
-                                          <TableColumn fx:id="zatwWyzywienieTable" prefWidth="85.60003662109375" text="Wyżywienie" />
+                                          <TableColumn fx:id="zatwWyzywienieTable" prefWidth="104.0" text="Wyżywienie" />
                                       </columns>
                                     </TableView>
                                  </children>
@@ -263,14 +263,14 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="453.0" layoutY="17.0" mnemonicParsing="false" onAction="#zapisOdswiez" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
-                                    <TableView fx:id="niezatwTable" layoutX="79.0" layoutY="63.0" prefHeight="298.0" prefWidth="442.0">
+                                    <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="462.0" layoutY="16.0" mnemonicParsing="false" onAction="#zapisOdswiez" prefHeight="30.0" prefWidth="68.0" text="Odśwież" textAlignment="CENTER" />
+                                    <TableView fx:id="niezatwTable" layoutX="70.0" layoutY="63.0" prefHeight="287.0" prefWidth="460.0">
                                        <columns>
                                           <TableColumn fx:id="niezatwIdTable" prefWidth="36.79998779296875" text="ID" />
                                           <TableColumn fx:id="niezatwIdUTable" prefWidth="105.60003662109375" text="ID użytkownika" />
                                           <TableColumn fx:id="niezatwIdWTable" prefWidth="98.4000244140625" text="ID wydarzenia" />
                                           <TableColumn fx:id="niezatwTypUczestnictwaTable" prefWidth="111.20001220703125" text="Typ uczestnictwa" />
-                                          <TableColumn fx:id="niezatwWyzywienieTable" prefWidth="85.60003662109375" text="Wyżywienie" />
+                                          <TableColumn fx:id="niezatwWyzywienieTable" prefWidth="103.99993896484375" text="Wyżywienie" />
                                        </columns>
                                     </TableView>
                                  </children>
