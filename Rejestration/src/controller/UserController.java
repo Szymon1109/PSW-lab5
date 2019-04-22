@@ -1,5 +1,6 @@
 package controller;
 
+import dao.EventDAO;
 import dao.EventDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,8 +77,8 @@ public class UserController implements Initializable {
     }
 
     public void setItemsInWydarzenia(){
-        EventDAOImpl eventDAOImpl = new EventDAOImpl();
-        List<Event> data = eventDAOImpl.findAllEvents();
+        EventDAO eventDAO = new EventDAOImpl();
+        List<Event> data = eventDAO.findAllEvents();
 
         ObservableList<String> list = FXCollections.observableArrayList();
         for (Event event : data) {
@@ -105,7 +106,7 @@ public class UserController implements Initializable {
     //dopisać metodę zwracającą odpowiednie wydarzenia
 
     public void setItemsInZatwWyd(){
-        EventDAOImpl event = new EventDAOImpl();
+        EventDAO event = new EventDAOImpl();
         List<Event> data = event.findAllEvents();
         ObservableList<Event> list = FXCollections.observableArrayList(data);
 
@@ -125,7 +126,7 @@ public class UserController implements Initializable {
     }
 
     public void setItemsInNiezatwWyd(){
-        EventDAOImpl event = new EventDAOImpl();
+        EventDAO event = new EventDAOImpl();
         List<Event> data = event.findAllEvents();
         ObservableList<Event> list = FXCollections.observableArrayList(data);
 
@@ -154,8 +155,8 @@ public class UserController implements Initializable {
     public void setAgenda(String wydarzenie){
         String agendaTxt = null;
 
-        EventDAOImpl eventDAOImpl = new EventDAOImpl();
-        List<Event> data = eventDAOImpl.findAllEvents();
+        EventDAO eventDAO = new EventDAOImpl();
+        List<Event> data = eventDAO.findAllEvents();
 
         for (Event event : data) {
             if (wydarzenie.equals(event.getNazwa())) {
@@ -183,8 +184,8 @@ public class UserController implements Initializable {
     public void setTermin(String wydarzenie){
         String terminTxt = null;
 
-        EventDAOImpl eventDAOImpl = new EventDAOImpl();
-        List<Event> data = eventDAOImpl.findAllEvents();
+        EventDAO eventDAO = new EventDAOImpl();
+        List<Event> data = eventDAO.findAllEvents();
 
         for (Event event : data) {
             if (wydarzenie.equals(event.getNazwa())) {

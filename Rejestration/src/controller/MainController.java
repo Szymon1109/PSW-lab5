@@ -161,7 +161,7 @@ public class MainController {
                 if(blokada()){
                     uwaga("Trzykrotnie podano niewłaściwe dane - blokada dostępu!");
                     System.exit(0);
-                };
+                }
             }
         }
         else{
