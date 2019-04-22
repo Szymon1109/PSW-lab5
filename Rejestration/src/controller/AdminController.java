@@ -1,9 +1,6 @@
 package controller;
 
-import dao.EventDAO;
-import dao.EventDAOImpl;
-import dao.UserDAO;
-import dao.UserDAOImpl;
+import dao.*;
 import email.Email;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Event;
 import model.User;
+import model.Zapis;
+
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -131,6 +130,12 @@ public class AdminController implements Initializable {
     private TableColumn zatwIdWTable;
 
     @FXML
+    private TableColumn zatwTypUczestnictwaTable;
+
+    @FXML
+    private TableColumn zatwWyzywienieTable;
+
+    @FXML
     private TableView niezatwTable;
 
     @FXML
@@ -143,6 +148,12 @@ public class AdminController implements Initializable {
     private TableColumn niezatwIdWTable;
 
     @FXML
+    private TableColumn niezatwTypUczestnictwaTable;
+
+    @FXML
+    private TableColumn niezatwWyzywienieTable;
+
+    @FXML
     private ComboBox<Integer> idZapis;
 
     @Override
@@ -152,6 +163,9 @@ public class AdminController implements Initializable {
         setItemsInWydTable();
         setItemsInWydNazwaUsun();
         setItemsInWydIdZmien();
+        setItemsInZatwTable();
+        setItemsInNiezatwTable();
+        setItemsInIdZapis();
     }
 
     public void setItemsInUzytkTable(){
@@ -555,6 +569,108 @@ public class AdminController implements Initializable {
             }
         } else {
             uwaga("Dane muszą składać się z conajmniej 3 znaków!");
+        }
+    }
+
+    public void setItemsInZatwTable(){
+        ZapisDAO zapisDAO = new ZapisDAOImpl();
+        List<Zapis> data = zapisDAO.findAllConfirmedZapis();
+        ObservableList<Zapis> list = FXCollections.observableArrayList(data);
+
+        zatwIdTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, Integer>("id"));
+
+        zatwIdUTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, Integer>("idUzytkownika"));
+
+        zatwIdWTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, Integer>("idWydarzenia"));
+
+        zatwTypUczestnictwaTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, String>("typUczestnictwa"));
+
+        zatwWyzywienieTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, String>("wyzywienie"));
+
+        zatwTable.setItems(list);
+    }
+
+    public void setItemsInNiezatwTable(){
+        ZapisDAO zapisDAO = new ZapisDAOImpl();
+        List<Zapis> data = zapisDAO.findAllNotConfirmedZapis();
+        ObservableList<Zapis> list = FXCollections.observableArrayList(data);
+
+        niezatwIdTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, Integer>("id"));
+
+        niezatwIdUTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, Integer>("idUzytkownika"));
+
+        niezatwIdWTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, Integer>("idWydarzenia"));
+
+        niezatwTypUczestnictwaTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, String>("typUczestnictwa"));
+
+        niezatwWyzywienieTable.setCellValueFactory(
+                new PropertyValueFactory<Zapis, String>("wyzywienie"));
+
+        niezatwTable.setItems(list);
+    }
+
+    @FXML
+    public void zapisOdswiez(ActionEvent actionEvent){
+        setItemsInZatwTable();
+        setItemsInNiezatwTable();
+        setItemsInIdZapis();
+    }
+
+    public void setItemsInIdZapis() {
+        ZapisDAO zapisDAO = new ZapisDAOImpl();
+        List<Zapis> data = zapisDAO.findAllNotConfirmedZapis();
+
+        ObservableList<Integer> list = FXCollections.observableArrayList();
+        for (Zapis zapis : data) {
+            Integer id = zapis.getId();
+            list.add(id);
+        }
+
+        idZapis.setItems(list);
+    }
+
+    @FXML
+    public void potwierdz(ActionEvent actionEvent){
+        Integer idTxt = idZapis.getValue();
+
+        if(idTxt.equals(null)){
+            uwaga("Nie wybrano żadnego zapisu!");
+        }
+        else{
+            ZapisDAO zapisDAO = new ZapisDAOImpl();
+            zapisDAO.confirm(idTxt);
+            uwaga("Potwierdzono wybrany zapis!");
+
+            setItemsInZatwTable();
+            setItemsInNiezatwTable();
+            setItemsInIdZapis();
+        }
+    }
+
+    @FXML
+    public void odrzuc(ActionEvent actionEvent){
+        Integer idTxt = idZapis.getValue();
+
+        if(idTxt.equals(null)){
+            uwaga("Nie wybrano żadnego zapisu!");
+        }
+        else{
+            ZapisDAO zapisDAO = new ZapisDAOImpl();
+            zapisDAO.reject(idTxt);
+            uwaga("Odrzucono wybrany zapis!");
+
+            setItemsInZatwTable();
+            setItemsInNiezatwTable();
+            setItemsInIdZapis();
         }
     }
 }

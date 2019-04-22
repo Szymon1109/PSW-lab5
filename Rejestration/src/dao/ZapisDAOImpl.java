@@ -2,13 +2,9 @@ package dao;
 
 import database.SQLConnection;
 import javafx.collections.FXCollections;
-import model.Event;
-import model.User;
 import model.Zapis;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ZapisDAOImpl implements ZapisDAO{
