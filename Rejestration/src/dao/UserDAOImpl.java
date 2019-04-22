@@ -6,7 +6,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import model.User;
 
-public class UserDAOImpl implements UserDAO{
+public class  UserDAOImpl implements UserDAO{
 
     public Boolean findUser(String query) {
         SQLConnection conn = new SQLConnection();
@@ -61,7 +61,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public List<User> findAllUsers(){
         List<User> data = FXCollections.observableArrayList();
-        String query = "SELECT * FROM uzytkownicy";
+        String query = "SELECT * FROM uzytkownicy WHERE uprawnienia = 'user';";
         SQLConnection conn = new SQLConnection();
         ResultSet rs = conn.makeQuery(query);
 
@@ -103,17 +103,17 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public void changePassword(User user, String newPassword){
+    public void changePassword(String login, String newPassword){
         String query = "UPDATE uzytkownicy SET haslo='" + newPassword +
-                "' WHERE id=" + user.getId() + ";";
+                "' WHERE login=" + login + ";";
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
         conn.closeConnect();
     }
 
     @Override
-    public void delete(User user){
-        String query = "DELETE FROM uzytkownicy WHERE id=" + user.getId() + ";";
+    public void delete(String login){
+        String query = "DELETE FROM uzytkownicy WHERE login=" + login + ";";
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
         conn.closeConnect();

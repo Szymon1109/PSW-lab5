@@ -11,6 +11,6 @@ public interface UserDAO {
     List findAllUsers();
 
     void save(User user);
-    void changePassword(User user, String newPassword);
-    void delete(User user);
+    void changePassword(String login, String newPassword);
+    void delete(String login);
 }

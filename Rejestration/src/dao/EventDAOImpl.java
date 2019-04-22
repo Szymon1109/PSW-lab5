@@ -80,6 +80,25 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
+    public Boolean findOne(String nazwa){
+        String query = "SELECT * FROM wydarzenia WHERE nazwa = '" + nazwa + "';";
+
+        SQLConnection conn = new SQLConnection();
+        ResultSet rs = conn.makeQuery(query);
+
+        try{
+            if(rs.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            conn.closeConnect(rs);
+        }
+        return false;
+    }
+
+    @Override
     public void confirm(User user, Event event){
         String query = "INSERT INTO potwierdzenia(id_uzytkownika, id_wydarzenia) VALUES (" +
                 user.getId() + ", " + event.getId() + ";";
@@ -100,9 +119,9 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public void update(Event event, String column, String newValue){
+    public void update(Integer id, String column, String newValue){
         String query = "UPDATE wydarzenia SET " + column + "='" +
-                newValue + "' WHERE id=" + event.getId() + ";";
+                newValue + "' WHERE id=" + id + ";";
 
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
@@ -110,8 +129,8 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public void delete(Event event){
-        String query = "DELETE FROM wydarzenia WHERE id=" + event.getId() + ";";
+    public void delete(String nazwa){
+        String query = "DELETE FROM wydarzenia WHERE nazwa=" + nazwa + ";";
 
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
