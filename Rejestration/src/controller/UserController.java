@@ -2,6 +2,8 @@ package controller;
 
 import dao.EventDAO;
 import dao.EventDAOImpl;
+import dao.ZapisDAO;
+import dao.ZapisDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Event;
+import model.Zapis;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,6 +21,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserController implements Initializable {
+
+    //TODO:
+    private static final Integer id_uzytkownika_CONST = 2;
 
     @FXML
     private ComboBox<String> wydarzenia;
@@ -76,6 +82,21 @@ public class UserController implements Initializable {
         setItemsInNiezatwWyd();
     }
 
+    public void uwaga(String string){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Uwaga!");
+        alert.setHeaderText(null);
+        alert.setContentText(string);
+        alert.showAndWait();
+    }
+
+    public void clearTextField(){
+        agenda.setText(null);
+        termin.setText(null);
+        typUczestnictwa.setValue(null);
+        wyzywienie.setValue(null);
+    }
+
     public void setItemsInWydarzenia(){
         EventDAO eventDAO = new EventDAOImpl();
         List<Event> data = eventDAO.findAllEvents();
@@ -101,13 +122,9 @@ public class UserController implements Initializable {
         wyzywienie.setItems(list);
     }
 
-    //TODO:
-    //dopisać metodę zwracającą indeksy wydarzeń zatwierdzonych i nie
-    //dopisać metodę zwracającą odpowiednie wydarzenia
-
     public void setItemsInZatwWyd(){
         EventDAO event = new EventDAOImpl();
-        List<Event> data = event.findAllEvents();
+        List<Event> data = event.findConfirmedEventsForUser(id_uzytkownika_CONST);
         ObservableList<Event> list = FXCollections.observableArrayList(data);
 
         idZatw.setCellValueFactory(
@@ -127,7 +144,7 @@ public class UserController implements Initializable {
 
     public void setItemsInNiezatwWyd(){
         EventDAO event = new EventDAOImpl();
-        List<Event> data = event.findAllEvents();
+        List<Event> data = event.findNotConfirmedEventsForUser(id_uzytkownika_CONST);
         ObservableList<Event> list = FXCollections.observableArrayList(data);
 
         idNiezatw.setCellValueFactory(
@@ -198,8 +215,37 @@ public class UserController implements Initializable {
 
     @FXML
     public void zapisz(ActionEvent actionEvent){
-        //TODO:
-        //pobranie ID użytkownika, ID wydarzenia i dodanie zapisu
+        String typUczestnictwaTxt = typUczestnictwa.getValue();
+        String wyzywienieTxt = wyzywienie.getValue();
+        String nazwaTxt = wydarzenia.getValue();
+        Integer idWyd = getId(nazwaTxt);
+
+        Zapis zapis = new Zapis(id_uzytkownika_CONST, idWyd, typUczestnictwaTxt, wyzywienieTxt);
+
+        ZapisDAO zapisDAO = new ZapisDAOImpl();
+        zapisDAO.save(zapis);
+
+        uwaga("Zapisano na podane wydarzenie!");
+        clearTextField();
+        setItemsInWydarzenia();
+        setItemsInZatwWyd();
+        setItemsInNiezatwWyd();
+    }
+
+    public Integer getId(String nazwa){
+        Integer id = null;
+
+        List<Event> data = FXCollections.observableArrayList();
+        EventDAO eventDAO = new EventDAOImpl();
+        data = eventDAO.findAllEvents();
+
+        for(Event event : data){
+            if(event.getNazwa().equals(nazwa)){
+                id = event.getId();
+                break;
+            }
+        }
+        return id;
     }
 
     @FXML
@@ -209,12 +255,8 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    public void odswiezZatw(ActionEvent actionEvent){
+    public void odswiez(ActionEvent actionEvent){
         setItemsInZatwWyd();
-    }
-
-    @FXML
-    public void odswiezNiezatw(ActionEvent actionEvent){
         setItemsInNiezatwWyd();
     }
 }

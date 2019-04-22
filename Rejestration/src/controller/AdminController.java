@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import model.Event;
 import model.User;
 import model.Zapis;
-
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;

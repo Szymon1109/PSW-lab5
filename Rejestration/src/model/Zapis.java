@@ -16,12 +16,11 @@ public class Zapis {
         this.wyzywienie = wyzywienie;
     }
 
-    public Zapis(Integer idUzytkownika, Integer idWydarzenia, String typUczestnictwa, String wyzywienie, String zgoda) {
+    public Zapis(Integer idUzytkownika, Integer idWydarzenia, String typUczestnictwa, String wyzywienie) {
         this.idUzytkownika = idUzytkownika;
         this.idWydarzenia = idWydarzenia;
         this.typUczestnictwa = typUczestnictwa;
         this.wyzywienie = wyzywienie;
-        this.zgoda = zgoda;
     }
 
     public Integer getId() {

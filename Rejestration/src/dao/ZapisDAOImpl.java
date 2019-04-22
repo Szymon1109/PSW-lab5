@@ -10,6 +10,17 @@ import java.util.List;
 public class ZapisDAOImpl implements ZapisDAO{
 
     @Override
+    public void save(Zapis zapis){
+        String query = "INSERT INTO zapisy(id_uzytkownika, id_wydarzenia, typ_uczestnictwa, wyzywienie) " +
+                "VALUES (" + zapis.getIdUzytkownika() + ", " + zapis.getIdWydarzenia() + ", '" +
+                zapis.getTypUczestnictwa() + "', '" + zapis.getWyzywienie() + "');";
+
+        SQLConnection conn = new SQLConnection();
+        conn.makeQueryToDatabase(query);
+        conn.closeConnect();
+    }
+
+    @Override
     public void confirm(Integer id){
         String query = "UPDATE zapisy SET zgoda='tak' WHERE id=" + id + ";";
 
