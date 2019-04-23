@@ -159,6 +159,8 @@ public class AdminController implements Initializable {
     @FXML
     private ComboBox<Integer> idZapis;
 
+    private String wydNazwaPom;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setItemsInUzytkTable();
@@ -427,12 +429,12 @@ public class AdminController implements Initializable {
     public void dodajWyd(javafx.event.ActionEvent actionEvent){
         String nazwaTxt = wydNazwaDodaj.getText();
         String agendaTxt = wydAgendaDodaj.getText();
-
         LocalDate termin = wydTerminDodaj.getValue();
-        String terminTxt = termin.toString();
 
-        if (checkString(nazwaTxt) && checkString(agendaTxt) && !terminTxt.equals(null)) {
+        if (checkString(nazwaTxt) && checkString(agendaTxt) && termin != null) {
             if (checkNazwa(nazwaTxt)) {
+                String terminTxt = termin.toString();
+
                 Event event = new Event(nazwaTxt, agendaTxt, terminTxt);
                 EventDAO eventDAO = new EventDAOImpl();
                 eventDAO.save(event);
@@ -485,11 +487,12 @@ public class AdminController implements Initializable {
         }
 
         wydIdZmien.setItems(list);
+        wydIdZmien.setValue(null);
     }
 
     @FXML
     public void usunWyd(javafx.event.ActionEvent actionEvent){
-        if(wydNazwaUsun.getValue().equals(null)){
+        if(wydNazwaUsun.getValue() == null){
             uwaga("Nie wybrano wydarzenia!");
         }
         else {
@@ -507,9 +510,12 @@ public class AdminController implements Initializable {
     @FXML
     public void wydarzeniaChanged(ActionEvent actionEvent) {
         Integer wydarzenie = wydIdZmien.getValue();
-        setNazwa(wydarzenie);
-        setAgenda(wydarzenie);
-        setTermin(wydarzenie);
+
+        if(wydarzenie != null) {
+            setNazwa(wydarzenie);
+            setAgenda(wydarzenie);
+            setTermin(wydarzenie);
+        }
     }
 
     public void setNazwa(Integer wydarzenie){
@@ -524,6 +530,7 @@ public class AdminController implements Initializable {
                 break;
             }
         }
+        wydNazwaPom = nazwaTxt;
         wydNazwaZmien.setText(nazwaTxt);
     }
 
@@ -574,28 +581,39 @@ public class AdminController implements Initializable {
 
     @FXML
     public void wydZmien(javafx.event.ActionEvent actionEvent){
+        Integer idTxt = wydIdZmien.getValue();
         String nazwaTxt = wydNazwaZmien.getText();
         String agendaTxt = wydAgendaZmien.getText();
-
         LocalDate termin = wydTerminZmien.getValue();
-        String terminTxt = termin.toString();
 
-        if (checkString(nazwaTxt) && checkString(agendaTxt) && !terminTxt.equals(null)) {
-            if (checkNazwa(nazwaTxt)) {
-                Event event = new Event(nazwaTxt, agendaTxt, terminTxt);
-                EventDAO eventDAO = new EventDAOImpl();
-                eventDAO.update(event);
+        if(idTxt == null){
+            uwaga("Nie wybrano żadnego wydarzenia!");
+        }
+        else {
+            if (checkString(nazwaTxt) && checkString(agendaTxt) && termin != null) {
+                if (checkNazwa(nazwaTxt) || nazwaTxt.equals(wydNazwaPom)) {
+                    agendaTxt = agendaTxt.replaceAll("\n", " ");
+                    String terminTxt = termin.toString();
 
-                uwaga("Zmieniono wybrane wydarzenie!");
-                clearWydTextField();
-                setItemsInWydTable();
-                setItemsInWydNazwaUsun();
-                setItemsInWydIdZmien();
+                    Event event = new Event(idTxt, nazwaTxt, agendaTxt, terminTxt);
+                    EventDAO eventDAO = new EventDAOImpl();
+                    eventDAO.update(event);
+
+                    uwaga("Zmieniono wybrane wydarzenie!");
+
+                    setItemsInWydTable();
+                    setItemsInWydNazwaUsun();
+                    setItemsInWydIdZmien();
+
+                    wydNazwaZmien.setText(null);
+                    wydTerminZmien.setValue(null);
+                    wydAgendaZmien.setText(null);
+                } else {
+                    uwaga("Podano istniejące wydarzenie - wybierz inne!");
+                }
             } else {
-                uwaga("Podano istniejące wydarzenie - wybierz inne!");
+                uwaga("Dane muszą składać się z conajmniej 3 znaków!");
             }
-        } else {
-            uwaga("Dane muszą składać się z conajmniej 3 znaków!");
         }
     }
 

@@ -121,10 +121,8 @@ public class EventDAOImpl implements EventDAO {
 
     @Override
     public void update(Event event){
-        Integer id = event.getId();
-
-        String query = "UPDATE wydarzenia SET nazwa='" + event.getNazwa() + "' AND " +
-                "agenda='" + event.getAgenda() + "' AND termin='" + event.getTermin() + "'" +
+        String query = "UPDATE wydarzenia SET nazwa='" + event.getNazwa() + "', " +
+                "agenda='" + event.getAgenda() + "', termin='" + event.getTermin() + "' " +
                 "WHERE id=" + event.getId() + ";";
 
         SQLConnection conn = new SQLConnection();
@@ -134,7 +132,7 @@ public class EventDAOImpl implements EventDAO {
 
     @Override
     public void delete(String nazwa){
-        String query = "DELETE FROM wydarzenia WHERE nazwa=" + nazwa + ";";
+        String query = "DELETE FROM wydarzenia WHERE nazwa='" + nazwa + "';";
 
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
