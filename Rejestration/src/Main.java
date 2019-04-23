@@ -8,8 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Parent root = FXMLLoader.load(getClass().getResource("view/MainView.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("view/AdminView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/MainView.fxml"));
         primaryStage.setTitle("Panel rejestracji");
         primaryStage.setScene(new Scene(root, 600, 450));
         primaryStage.show();

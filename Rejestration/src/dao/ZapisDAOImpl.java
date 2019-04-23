@@ -40,14 +40,14 @@ public class ZapisDAOImpl implements ZapisDAO{
 
     @Override
     public List<Zapis> findAllConfirmedZapis(){
-        String query = "SELECT * FROM zapisy WHERE zgoda='tak'";
+        String query = "SELECT * FROM zapisy WHERE zgoda='tak';";
 
         return getData(query);
     }
 
     @Override
     public List<Zapis> findAllNotConfirmedZapis(){
-        String query = "SELECT * FROM zapisy WHERE zgoda IS NULL";
+        String query = "SELECT * FROM zapisy WHERE zgoda IS NULL;";
 
         return getData(query);
     }

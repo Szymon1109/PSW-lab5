@@ -687,7 +687,7 @@ public class AdminController implements Initializable {
     public void potwierdz(ActionEvent actionEvent){
         Integer idTxt = idZapis.getValue();
 
-        if(idTxt.equals(null)){
+        if(idTxt == null){
             uwaga("Nie wybrano żadnego zapisu!");
         }
         else{
@@ -705,7 +705,7 @@ public class AdminController implements Initializable {
     public void odrzuc(ActionEvent actionEvent){
         Integer idTxt = idZapis.getValue();
 
-        if(idTxt.equals(null)){
+        if(idTxt == null){
             uwaga("Nie wybrano żadnego zapisu!");
         }
         else{
