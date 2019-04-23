@@ -5,13 +5,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Event;
 import model.User;
 import model.Zapis;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -70,40 +74,11 @@ public class UserController implements Initializable {
 
     private Integer idUzytkownika;
 
-    public String getLoginUzytkownika(){
-        Stage stage =(Stage)wyloguj.getScene().getWindow();
-        String title = stage.getTitle();
-        String login = title.substring(18);
-
-        return login;
-    }
-
-    public Integer getIdUzytkownika(String login){
-        Integer id = null;
-
-        List<User> data = FXCollections.observableArrayList();
-        UserDAO userDAO = new UserDAOImpl();
-        data = userDAO.findAllUsers();
-
-        for(User user : data){
-            if(user.getLogin().equals(login)){
-                id = user.getId();
-                break;
-            }
-        }
-        return id;
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String login = getLoginUzytkownika();
-        idUzytkownika = getIdUzytkownika(login);
-
         setItemsInWydarzenia();
         setItemsInTypUczestnictwa();
         setItemsInWyzywienie();
-        setItemsInZatwWyd();
-        setItemsInNiezatwWyd();
     }
 
     public void uwaga(String string){
@@ -132,6 +107,10 @@ public class UserController implements Initializable {
         }
 
         wydarzenia.setItems(list);
+        wydarzenia.setValue(null);
+
+        agenda.setText(null);
+        termin.setText(null);
     }
 
     public void setItemsInTypUczestnictwa(){
@@ -189,8 +168,11 @@ public class UserController implements Initializable {
     @FXML
     public void wydarzeniaChanged(ActionEvent actionEvent) {
         String wydarzenie = wydarzenia.getValue();
-        setAgenda(wydarzenie);
-        setTermin(wydarzenie);
+
+        if(wydarzenie != null) {
+            setAgenda(wydarzenie);
+            setTermin(wydarzenie);
+        }
     }
 
     public void setAgenda(String wydarzenie){
@@ -242,18 +224,24 @@ public class UserController implements Initializable {
         String typUczestnictwaTxt = typUczestnictwa.getValue();
         String wyzywienieTxt = wyzywienie.getValue();
         String nazwaTxt = wydarzenia.getValue();
-        Integer idWyd = getId(nazwaTxt);
 
-        Zapis zapis = new Zapis(idUzytkownika, idWyd, typUczestnictwaTxt, wyzywienieTxt);
+        if(typUczestnictwaTxt != null && wyzywienieTxt != null && nazwaTxt != null) {
+            Integer idWyd = getId(nazwaTxt);
+            getData();
+            Zapis zapis = new Zapis(idUzytkownika, idWyd, typUczestnictwaTxt, wyzywienieTxt);
 
-        ZapisDAO zapisDAO = new ZapisDAOImpl();
-        zapisDAO.save(zapis);
+            ZapisDAO zapisDAO = new ZapisDAOImpl();
+            zapisDAO.save(zapis);
 
-        uwaga("Zapisano na podane wydarzenie!");
-        clearTextField();
-        setItemsInWydarzenia();
-        setItemsInZatwWyd();
-        setItemsInNiezatwWyd();
+            uwaga("Zapisano na podane wydarzenie!");
+            clearTextField();
+            setItemsInWydarzenia();
+            setItemsInZatwWyd();
+            setItemsInNiezatwWyd();
+        }
+        else {
+            uwaga("Nie wybrano wszystkich danych!");
+        }
     }
 
     public Integer getId(String nazwa){
@@ -276,11 +264,58 @@ public class UserController implements Initializable {
     public void wyloguj(ActionEvent actionEvent){
         Stage stage =(Stage)wyloguj.getScene().getWindow();
         stage.close();
+
+        showMain();
+    }
+
+    public void showMain(){
+        Parent root = null;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("../view/MainView.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = new Stage();
+        stage.setTitle("Panel rejestracji");
+        stage.setScene(new Scene(root, 600, 450));
+        stage.show();
     }
 
     @FXML
     public void odswiez(ActionEvent actionEvent){
+        getData();
         setItemsInZatwWyd();
         setItemsInNiezatwWyd();
+    }
+
+    public void getData(){
+        String login = getLoginUzytkownika();
+        idUzytkownika = getIdUzytkownika(login);
+    }
+
+    public String getLoginUzytkownika(){
+        Stage stage =(Stage)wyloguj.getScene().getWindow();
+        String title = stage.getTitle();
+        String login = title.substring(19);
+
+        return login;
+    }
+
+    public Integer getIdUzytkownika(String login){
+        Integer id = 0;
+
+        List<User> data;
+        UserDAO userDAO = new UserDAOImpl();
+        data = userDAO.findAllUsers();
+
+        for(User user : data){
+            if(user.getLogin().equals(login)){
+                id = user.getId();
+                break;
+            }
+        }
+        return id;
     }
 }

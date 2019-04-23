@@ -1,17 +1,21 @@
 package controller;
 
+import dao.UserDAO;
+import dao.UserDAOImpl;
 import email.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.User;
+
 import java.io.IOException;
 import java.sql.Date;
-
-import dao.*;
-import model.User;
 
 public class MainController {
 
@@ -158,6 +162,7 @@ public class MainController {
     private void openUserView(String viewPath) {
         Parent parent;
         try {
+            closeMain();
             parent = FXMLLoader.load(getClass().getClassLoader().getResource(viewPath));
             Stage stage = new Stage();
             stage.setTitle("Panel użytkownika: " + username.getText());
@@ -172,6 +177,7 @@ public class MainController {
     private void openAdminView(String viewPath) {
         Parent parent;
         try {
+            closeMain();
             parent = FXMLLoader.load(getClass().getClassLoader().getResource(viewPath));
             Stage stage = new Stage();
             stage.setTitle("Panel administratora: " + username.getText());
@@ -181,6 +187,11 @@ public class MainController {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void closeMain(){
+        Stage stage =(Stage)username.getScene().getWindow();
+        stage.close();
     }
 
     public boolean checkLogin(String login){

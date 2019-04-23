@@ -73,7 +73,7 @@ public class EventDAOImpl implements EventDAO {
 
             try{
                 while(rs2.next()){
-                    Integer id_wydarzenia = rs2.getInt("id_wydarzenia");
+                    Integer id_wydarzenia = rs2.getInt("id");
                     String nazwa = rs2.getString("nazwa");
                     String agenda = rs2.getString("agenda");
                     String termin = rs2.getString("termin");
