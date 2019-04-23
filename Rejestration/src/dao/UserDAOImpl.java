@@ -1,10 +1,12 @@
 package dao;
 
 import database.SQLConnection;
-import java.sql.*;
-import java.util.List;
 import javafx.collections.FXCollections;
 import model.User;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 public class  UserDAOImpl implements UserDAO{
 
@@ -105,7 +107,7 @@ public class  UserDAOImpl implements UserDAO{
     @Override
     public void changePassword(String login, String newPassword){
         String query = "UPDATE uzytkownicy SET haslo='" + newPassword +
-                "' WHERE login=" + login + ";";
+                "' WHERE login='" + login + "';";
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
         conn.closeConnect();
@@ -113,7 +115,7 @@ public class  UserDAOImpl implements UserDAO{
 
     @Override
     public void delete(String login){
-        String query = "DELETE FROM uzytkownicy WHERE login=" + login + ";";
+        String query = "DELETE FROM uzytkownicy WHERE login='" + login + "';";
         SQLConnection conn = new SQLConnection();
         conn.makeQueryToDatabase(query);
         conn.closeConnect();

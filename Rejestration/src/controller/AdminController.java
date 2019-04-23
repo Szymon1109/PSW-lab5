@@ -6,13 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Event;
 import model.User;
 import model.Zapis;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -206,6 +210,23 @@ public class AdminController implements Initializable {
     public void wyloguj(ActionEvent actionEvent){
         Stage stage =(Stage)wyloguj.getScene().getWindow();
         stage.close();
+
+        showMain();
+    }
+
+    public void showMain(){
+        Parent root = null;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("../view/MainView.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = new Stage();
+        stage.setTitle("Panel rejestracji");
+        stage.setScene(new Scene(root, 600, 450));
+        stage.show();
     }
 
     public void uwaga(String string){
@@ -306,11 +327,14 @@ public class AdminController implements Initializable {
 
         obslugaLoginUsun.setItems(list);
         obslugaLoginZmien.setItems(list);
+
+        obslugaLoginUsun.setValue(null);
+        obslugaLoginZmien.setValue(null);
     }
 
     @FXML
     public void usun(javafx.event.ActionEvent actionEvent){
-        if(obslugaLoginUsun.getValue().equals(null)){
+        if(obslugaLoginUsun.getValue() == null){
             uwaga("Nie wybrano użytkownika!");
         }
         else {
@@ -335,12 +359,13 @@ public class AdminController implements Initializable {
 
     @FXML
     public void zmien(javafx.event.ActionEvent actionEvent){
-        if(obslugaLoginZmien.getValue().equals(null)){
+
+        if(obslugaLoginZmien.getValue() == null){
             uwaga("Nie wybrano użytkownika!");
         }
         else {
-            if(obslugaNoweHaslo1.getText().equals(null)){
-                uwaga("Nie podano nowego hasła!");
+            if(!checkString(obslugaNoweHaslo1.getText())){
+                uwaga("Nowe hasło musi składać się z conajmniej 3 znaków!");
             }
             else {
                 if(checkPassword()) {
@@ -353,6 +378,9 @@ public class AdminController implements Initializable {
 
                     setItemsInUzytkTable();
                     setItemsInObslugaLogin();
+
+                    obslugaNoweHaslo1.setText(null);
+                    obslugaNoweHaslo2.setText(null);
                 }
                 else{
                     uwaga("Podane hasła nie zgadzają się");
