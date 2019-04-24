@@ -8,6 +8,9 @@ public interface ZapisDAO {
     void confirm(Integer id);
     void reject(Integer id);
 
+    void deleteForUser(Integer id);
+    void deleteForEvent(Integer id);
+
     List findAllConfirmedZapis();
     List findAllNotConfirmedZapis();
 }

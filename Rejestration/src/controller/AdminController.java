@@ -334,12 +334,31 @@ public class AdminController implements Initializable {
         obslugaLoginZmien.setValue(null);
     }
 
+    public void deleteZapisyForUser(){
+        String login = obslugaLoginUsun.getValue();
+        Integer id = null;
+
+        UserDAO userDAO = new UserDAOImpl();
+        List<User> data = userDAO.findAllUsers();
+
+        for (User user : data) {
+            if (login.equals(user.getLogin())) {
+                id = user.getId();
+                break;
+            }
+        }
+        ZapisDAO zapisDAO = new ZapisDAOImpl();
+        zapisDAO.deleteForUser(id);
+    }
+
     @FXML
     public void usun(javafx.event.ActionEvent actionEvent){
         if(obslugaLoginUsun.getValue() == null){
             uwaga("Nie wybrano użytkownika!");
         }
         else {
+            deleteZapisyForUser();
+
             UserDAO userDAO = new UserDAOImpl();
             String loginTxt = obslugaLoginUsun.getValue();
             userDAO.delete(loginTxt);
@@ -490,12 +509,31 @@ public class AdminController implements Initializable {
         wydIdZmien.setValue(null);
     }
 
+    public void deleteZapisyForEvent(){
+        String nazwa = wydNazwaUsun.getValue();
+        Integer id = null;
+
+        EventDAO eventDAO = new EventDAOImpl();
+        List<Event> data = eventDAO.findAllEvents();
+
+        for (Event event : data) {
+            if (nazwa.equals(event.getNazwa())) {
+                id = event.getId();
+                break;
+            }
+        }
+        ZapisDAO zapisDAO = new ZapisDAOImpl();
+        zapisDAO.deleteForEvent(id);
+    }
+
     @FXML
     public void usunWyd(javafx.event.ActionEvent actionEvent){
         if(wydNazwaUsun.getValue() == null){
             uwaga("Nie wybrano wydarzenia!");
         }
         else {
+            deleteZapisyForEvent();
+
             EventDAO eventDAO = new EventDAOImpl();
             String nazwaTxt = wydNazwaUsun.getValue();
             eventDAO.delete(nazwaTxt);

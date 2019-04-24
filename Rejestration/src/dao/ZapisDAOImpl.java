@@ -39,6 +39,20 @@ public class ZapisDAOImpl implements ZapisDAO{
     }
 
     @Override
+    public void deleteForUser(Integer id){
+        String query = "DELETE FROM zapisy WHERE id_uzytkownika=" + id + ";";
+        SQLConnection conn = new SQLConnection();
+        conn.makeQueryToDatabase(query);
+    }
+
+    @Override
+    public void deleteForEvent(Integer id){
+        String query = "DELETE FROM zapisy WHERE id_wydarzenia=" + id +";";
+        SQLConnection conn = new SQLConnection();
+        conn.makeQueryToDatabase(query);
+    }
+
+    @Override
     public List<Zapis> findAllConfirmedZapis(){
         String query = "SELECT * FROM zapisy WHERE zgoda='tak';";
 
